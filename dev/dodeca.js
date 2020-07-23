@@ -32,15 +32,15 @@ Zdog.Dodeca = class {
         radius: 1,
         addTo: e,
         translate: { y: -r },
-        rotate: { x: TAU / 4 },
+        rotate: { x: Zdog.TAU / 4 },
         fill: true,
         stroke: false
       })
     ];
     let p = this.parts[0];
-    this.parts.push(p.copy({ translate: { y: r }, rotate: { x: -TAU / 4 } }));
+    this.parts.push(p.copy({ translate: { y: r }, rotate: { x: -Zdog.TAU / 4 } }));
 
-    m = TAU / 5;
+    m = Zdog.TAU / 5;
     this.anchor1 = [
       new Zdog.Anchor({ addTo: e, rotate: { y: -m * 0 } }),
       new Zdog.Anchor({ addTo: e, rotate: { y: -m * 1 } }),
@@ -56,7 +56,7 @@ Zdog.Dodeca = class {
       this.anchor2.push(
         new Zdog.Anchor({
           addTo: c[j % 5],
-          rotate: { x: (TAU / 4) * m - Math.atan(2) }
+          rotate: { x: (Zdog.TAU / 4) * m - Math.atan(2) }
         })
       );
       m = j === 4 ? 1 : m;
@@ -69,7 +69,7 @@ Zdog.Dodeca = class {
         p.copy({
           addTo: d[j],
           translate: { z: r },
-          rotate: { z: TAU / 2 },
+          rotate: { z: Zdog.TAU / 2 },
           color: u.colors ? u.colors[j] : u.color
         })
       );
