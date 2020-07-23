@@ -29,7 +29,7 @@ Zdog.Octa = class {
     });
     let e = this.anchor;
 
-    m = TAU / 4;
+    m = Zdog.TAU / 4;
     this.anchor1 = [
       new Zdog.Anchor({ addTo: e, rotate: { y: -m * (0 + 1.5) } }),
       new Zdog.Anchor({ addTo: e, rotate: { y: -m * (1 + 1.5) } }),
