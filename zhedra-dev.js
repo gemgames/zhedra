@@ -1,4 +1,4 @@
-var Zdog,Zhedra;
+var Zdog,Zhedra={};
 Zhedra.Tetra = class {
   constructor(u) {
     this.children = "WIP";
