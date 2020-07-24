@@ -359,11 +359,12 @@ Zhedra.Dodeca = class {
         translate: { y: -r },
         rotate: { x: Zdog.TAU / 4 },
         fill: true,
-        stroke: false
+        stroke: false,
+        color:u.colors[10]
       })
     ];
     let p = this.parts[0];
-    this.parts.push(p.copy({ translate: { y: r }, rotate: { x: -Zdog.TAU / 4 } }));
+    this.parts.push(p.copy({ translate: { y: r }, rotate: { x: -Zdog.TAU / 4 },color:u.colors[11]}));
 
     m = Zdog.TAU / 5;
     this.anchor1 = [
