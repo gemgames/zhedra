@@ -199,8 +199,8 @@ Zhedra.Octa = class {
     this.anchor = new Zdog.Anchor({
       addTo: u.addTo,
       translate: {
-        x: u.translate.x - 4,
-        y: u.translate.y - 4,
+        x: u.translate.x,
+        y: u.translate.y,
         z: u.translate.z
       },
       rotate: u.rotate || { x: 0, y: 0, z: 0 },
@@ -287,7 +287,7 @@ Zhedra.Octa = class {
   }
   set translate(x) {
     this._translate = x;
-    this.anchor.translate = { x: x.x - 4, y: x.y - 4, z: x.z };
+    this.anchor.translate = x;
   }
   set rotate(x) {
     this._rotate = this.anchor.rotate = x || { x: 0, y: 0, z: 0 };
