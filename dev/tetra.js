@@ -1,4 +1,4 @@
-Zdog.Tetra = class {
+Zhedra.Tetra = class {
   constructor(u) {
     this.children = "WIP";
     let copy = [
