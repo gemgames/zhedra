@@ -1,4 +1,4 @@
-Zdog.Octa = class {
+Zhedra.Octa = class {
   constructor(u) {
     this.children = "WIP";
     //
