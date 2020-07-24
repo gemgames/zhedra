@@ -632,7 +632,7 @@ Zhedra.Icosa = class {
     }
   }
 };
-Zhedra.init(){
+Zhedra.init = function(){
   Zdog.Tetra = Zhedra.Tetra;
   Zdog.Octa = Zhedra.Octa;
   Zdog.Dodeca = Zhedra.Dodeca;
