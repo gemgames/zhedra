@@ -1,5 +1,5 @@
-var Zdog;
-Zdog.Tetra = class {
+var Zdog,Zhedra;
+Zhedra.Tetra = class {
   constructor(u) {
     this.children = "WIP";
     let copy = [
@@ -177,7 +177,7 @@ Zdog.Tetra = class {
     }
   }
 };
-Zdog.Octa = class {
+Zhedra.Octa = class {
   constructor(u) {
     this.children = "WIP";
     //
@@ -323,7 +323,7 @@ Zdog.Octa = class {
     }
   }
 };
-Zdog.Dodeca = class {
+Zhedra.Dodeca = class {
   constructor(u) {
     this.children = "WIP";
     //
@@ -474,7 +474,7 @@ Zdog.Dodeca = class {
     }
   }
 };
-Zdog.Icosa = class {
+Zhedra.Icosa = class {
   constructor(u) {
     this.children = "WIP";
     //
@@ -631,4 +631,10 @@ Zdog.Icosa = class {
       this.addTo.removeChild(this);
     }
   }
+};
+Zhedra.init(){
+  Zdog.Tetra = Zhedra.Tetra;
+  Zdog.Octa = Zhedra.Octa;
+  Zdog.Dodeca = Zhedra.Dodeca;
+  Zdog.Icosa = Zhedra.Icosa;
 };
