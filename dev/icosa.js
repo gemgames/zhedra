@@ -1,4 +1,4 @@
-Zdog.Icosa = class {
+Zhedra.Icosa = class {
   constructor(u) {
     this.children = "WIP";
     //
