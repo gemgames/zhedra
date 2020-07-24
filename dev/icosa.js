@@ -33,7 +33,7 @@ Zdog.Icosa = class {
         y: u.translate.y + 4,
         z: u.translate.z
       },
-      scale: u.scale * 0.35
+      scale: u.scale * 0.55
     });
     let e = this.anchor;
 
@@ -128,9 +128,9 @@ Zdog.Icosa = class {
   set scale(x) {
     this._scale = x;
     if (typeof x === "object") {
-      this.anchor.scale = { x: x.x * 0.35, y: x.y * 0.35, z: x.z * 0.35 };
+      this.anchor.scale = { x: x.x * 0.55, y: x.y * 0.55, z: x.z * 0.55 };
     } else {
-      this.anchor.scale = x * 0.38;
+      this.anchor.scale = x * 0.55;
     }
   }
   set color(x) {
