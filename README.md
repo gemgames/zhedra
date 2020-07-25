@@ -1,6 +1,6 @@
 # Zhedra
 
-_ A polyhedra plugin for the Zdog Pseudo-3D Engine
+A polyhedra plugin for the Zdog Pseudo-3D Engine
 
 ## Install
 
@@ -9,13 +9,14 @@ _ A polyhedra plugin for the Zdog Pseudo-3D Engine
 Link directly to Zdog JS on ...
 
 ``` html
-<script src="..."></script>
+<script src="https://cdn.jsdelivr.net/gh/gemgames/zhedra@0.1.0/zhedra-min.js"></script>
 ```
 
 ## Features
 
 + New Objects!
 + Tetrahedron (Zdog.Tetra)
++ Cube (Zdog.Cube)
 + Octahedron (Zdog.Octa)
 + Dodecahedron (Zdog.Dodeca)
 + Icosahedron (Zdog.Icosa)
@@ -98,10 +99,10 @@ colors: [
 
 ### Functions
 
-| Param      | Details |
-|:-----------|:--------|
-| `copy(params);` | Copy Object (Params above ^) |
-| `remove();` | Remove Object |
+| Functions  | Params  | Details |
+|:-----------|:--------|:--------|
+| `copy(params);` | `params`: Function | Copy Object (Params above ^) |
+| `remove();` | `none` | Remove Object |
 
 ## Demos
 
