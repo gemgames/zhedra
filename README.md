@@ -1,6 +1,6 @@
 # Zhedra
 
-_A polyhedra plugin for the Zdog Pseudo-3D Engine
+_ A polyhedra plugin for the Zdog Pseudo-3D Engine
 
 ## Install
 
