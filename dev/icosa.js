@@ -29,11 +29,11 @@ Zhedra.Icosa = class {
     this.anchor = new Zdog.Anchor({
       addTo: u.addTo,
       translate: {
-        x: u.translate.x + 4,
-        y: u.translate.y + 4,
+        x: u.translate.x,
+        y: u.translate.y,
         z: u.translate.z
       },
-      scale: u.scale * 0.55
+      scale: u.scale * 0.5
     });
     let e = this.anchor;
 
@@ -85,7 +85,7 @@ Zhedra.Icosa = class {
     }
     for (let j = 0; j < copy.length; j++) {
       if (u[copy[j]] !== undefined) {
-        this["_" + copy[j]] = u[copy[j]];
+        this[copy[j]] = u[copy[j]];
       }
     }
   }
@@ -119,18 +119,28 @@ Zhedra.Icosa = class {
     this._addTo = this.anchor.addTo = x;
   }
   set translate(x) {
-    this._translate = x;
-    this.anchor.translate = { x: x.x, y: x.y + 4, z: x.z };
+    this._translate = this.anchor.translate = {
+      x: x.x ? x.x : 0,
+      y: x.y ? x.y : 0,
+      z: x.z ? x.z : 0
+    };
   }
   set rotate(x) {
-    this._rotate = this.anchor.rotate = x || { x: 0, y: 0, z: 0 };
+    this._rotate = this.anchor.rotate = {
+      x: x.x ? x.x : 0,
+      y: x.y ? x.y : 0,
+      z: x.z ? x.z : 0
+    };
   }
   set scale(x) {
-    this._scale = x;
     if (typeof x === "object") {
-      this.anchor.scale = { x: x.x * 0.55, y: x.y * 0.55, z: x.z * 0.55 };
+      this._scale = this.anchor.scale = {
+        x: x.x ? x.x : 0,
+        y: x.y ? x.y : 0,
+        z: x.z ? x.z : 0
+      };
     } else {
-      this.anchor.scale = x * 0.55;
+      this._scale = this.anchor.scale = x * 0.5;
     }
   }
   set color(x) {
