@@ -105,13 +105,13 @@ new Zdog.Tetra({
   translate: {},
   rotate: {},
   scale: 80,
-  color: "#E62",
+  color: "#07D",
   fill: true,
   stroke: 0,
 });
 ```
 
-### Zdog.octa
+### Zdog.Octa
 
 | Param      | Details | Default |
 |:-----------|:--------|:--------|
@@ -132,12 +132,12 @@ new Zdog.Tetra({
 
 ``` js
 // Create a octahedron object
-new Zdog.Tetra({
+new Zdog.Octa({
   addTo: illo,
   translate: {},
   rotate: {},
   scale: 80,
-  color: "#C25",
+  color: "#EA0",
   fill: true,
   stroke: 0,
 });
@@ -169,7 +169,7 @@ new Zdog.Dodeca({
   translate: {},
   rotate: {},
   scale: 80,
-  color: "#EA0",
+  color: "#E62",
   fill: true,
   stroke: 0,
 });
@@ -201,12 +201,12 @@ new Zdog.Icosa({
   translate: {},
   rotate: {},
   scale: 80,
-  color: "#0A2",
+  color: "#C25",
   fill: true,
   stroke: 0,
 });
 ```
 
-##Thank you!
+## Thank you!
 
 Thank you for reading this! If you have any issues, please feel free to request an issue, or create a pull request
