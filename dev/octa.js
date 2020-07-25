@@ -127,7 +127,7 @@ Zhedra.Octa = class {
         z: x.z ? x.z : 0
       };
     } else {
-      this._scale = this.anchor.scale = x*0.7;
+      this._scale = this.anchor.scale = x * 0.7;
     }
   }
   set color(x) {
@@ -158,5 +158,17 @@ Zhedra.Octa = class {
     if (this.addTo) {
       this.addTo.removeChild(this);
     }
+  }
+  copy(p) {
+    let x = new Zhedra.Octa({
+      addTo: p.addTo ? p.addTo : undefined,
+      translate: p.translate ? p.translate : undefined,
+      rotate: p.rotate ? p.rotate : undefined,
+      scale: p.scale ? p.scale : undefined,
+      color: p.color ? p.color : undefined,
+      fill: p.fill ? p.fill : undefined,
+      stroke: p.stroke ? p.stroke : undefined,
+      colors: p.colors ? p.colors : undefined
+    });
   }
 };
