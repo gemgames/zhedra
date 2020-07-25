@@ -3,16 +3,7 @@ var Zdog,
 Zhedra.Tetra = class {
   constructor(u) {
     this.children = "WIP";
-    let copy = [
-      "addTo",
-      "color",
-      "fill",
-      "stroke",
-      "frontFace",
-      "bottomFace",
-      "leftFace",
-      "rightFace"
-    ];
+    let copy = ["addTo", "color", "fill", "stroke", "colors"];
     //vars
     let i = Math.cos(Zdog.TAU / 6) / 2;
     let h = 0.5 + i,
@@ -60,7 +51,7 @@ Zhedra.Tetra = class {
         rotate: { x: -Zdog.TAU / 4, z: -Zdog.TAU / 2 },
         radius: 0.5,
         sides: 3,
-        color: u.bottomFace === undefined ? u.color : u.bottomFace,
+        color: u.colors ? u.colors[0] : u.color,
         fill: u.fill,
         stroke: u.stroke
       }),
@@ -69,7 +60,7 @@ Zhedra.Tetra = class {
         translate: { y: -i },
         radius: 0.5,
         sides: 3,
-        color: u.frontFace === undefined ? u.color : u.frontFace,
+        color: u.colors ? u.colors[1] : u.color,
         fill: u.fill,
         stroke: u.stroke
       }),
@@ -78,7 +69,7 @@ Zhedra.Tetra = class {
         translate: { y: -i },
         radius: 0.5,
         sides: 3,
-        color: u.rightFace === undefined ? u.color : u.rightFace,
+        color: u.colors ? u.colors[2] : u.color,
         fill: u.fill,
         stroke: u.stroke
       }),
@@ -87,19 +78,19 @@ Zhedra.Tetra = class {
         translate: { y: -i },
         radius: 0.5,
         sides: 3,
-        color: u.leftFace === undefined ? u.color : u.leftFace,
+        color: u.colors ? u.colors[3] : u.color,
         fill: u.fill,
         stroke: u.stroke
       })
     ];
     d = null;
-    let x = u.translate||{};
+    let x = u.translate || {};
     this._translate = this.anchor.translate = {
       x: x.x ? x.x : 0,
       y: x.y ? x.y : 0,
       z: x.z ? x.z : 0
     };
-    x = u.rotate||{};
+    x = u.rotate || {};
     this._rotate = this.anchor.rotate = {
       x: x.x ? x.x : 0,
       y: x.y ? x.y : 0,
@@ -144,17 +135,8 @@ Zhedra.Tetra = class {
   get stroke() {
     return this._stroke;
   }
-  get frontFace() {
+  get colors() {
     return this._frontFace;
-  }
-  get bottomFace() {
-    return this._bottomFace;
-  }
-  get leftFace() {
-    return this._leftFace;
-  }
-  get rightFace() {
-    return this._rightFace;
   }
   //set
   set addTo(x) {
@@ -186,32 +168,216 @@ Zhedra.Tetra = class {
     }
   }
   set color(x) {
-    this._color = this.parts[0].color = this.parts[1].color = this.parts[2].color = this.parts[3].color =
-      x || "#333";
+    this._color = x;
+    this.parts.forEach(function(item) {
+      item.color = x;
+    });
   }
   set fill(x) {
-    this._fill = this.anchor.fill = typeof x === "boolean" ? x : false;
+    this._fill = x;
+    this.parts.forEach(function(item) {
+      item.fill = x;
+    });
   }
   set stroke(x) {
-    this._stroke = this.parts[0].stroke = this.parts[1].stroke = this.parts[2].stroke = this.parts[3].stroke =
-      x || 0;
+    this._stroke = x;
+    this.parts.forEach(function(item) {
+      item.stroke = x;
+    });
   }
-  set frontFace(x) {
-    this._frontFace = this.parts[1].color = x || "#333";
-  }
-  set bottomFace(x) {
-    this._bottomFace = this.parts[0].color = x || "#333";
-  }
-  set leftFace(x) {
-    this._leftFace = this.parts[2].color = x || "#333";
-  }
-  set rightFace(x) {
-    this._rightFace = this.parts[3].color = x || "#333";
+  set colors(x) {
+    this._colors = x;
+    this.parts.forEach(function(item, index) {
+      item.color = x[index];
+    });
   }
   remove(t) {
     if (this.addTo) {
       this.addTo.removeChild(this);
     }
+  }
+  copy(p) {
+    let x = new Zhedra.Tetra({
+      addTo: p.addTo ? p.addTo : undefined,
+      translate: p.translate ? p.translate : undefined,
+      rotate: p.rotate ? p.rotate : undefined,
+      scale: p.scale ? p.scale : undefined,
+      color: p.color ? p.color : undefined,
+      fill: p.fill ? p.fill : undefined,
+      stroke: p.stroke ? p.stroke : undefined,
+      colors: p.colors ? p.colors : undefined
+    });
+  }
+};
+Zhedra.Cube = class {
+  constructor(u) {
+    this.children = "WIP";
+    let copy = ["addTo", "color", "fill", "stroke", "colors"];
+    //vars
+    this.anchor = new Zdog.Anchor({
+      addTo: u.addTo,
+      translate: u.translate,
+      rotate: u.rotate,
+      scale: u.scale
+    });
+    let e = this.anchor;
+    let d;
+    this.parts = [];
+    this.parts[0] = d = new Zdog.Rect({
+      addTo: e,
+      length: 1,
+      width: 1,
+      fill: u.fill,
+      stroke: u.stroke,
+      translate: { y: 0.5 },
+      rotate: { x: Zdog.TAU / 4 },
+      color: u.colors ? u.colors[0] : u.color
+    });
+    this.parts[1] = d.copy({
+      translate: { z: 0.5 },
+      rotate: {},
+      color: u.colors ? u.colors[1] : u.color
+    });
+    this.parts[2] = d.copy({
+      translate: { x: 0.5 },
+      rotate: { y: Zdog.TAU / 4 },
+      color: u.colors ? u.colors[2] : u.color
+    });
+    this.parts[3] = d.copy({
+      translate: { z: -0.5 },
+      rotate: {},
+      color: u.colors ? u.colors[3] : u.color
+    });
+    this.parts[4] = d.copy({
+      translate: { x: -0.5 },
+      rotate: { y: Zdog.TAU / 4 },
+      color: u.colors ? u.colors[4] : u.color
+    });
+    this.parts[5] = d.copy({
+      translate: { y: -0.5 },
+      rotate: { x: -Zdog.TAU / 4 },
+      color: u.colors ? u.colors[5] : u.color
+    });
+    let x = u.translate || {};
+    this._translate = this.anchor.translate = {
+      x: x.x ? x.x : 0,
+      y: x.y ? x.y : 0,
+      z: x.z ? x.z : 0
+    };
+    x = u.rotate || {};
+    this._rotate = this.anchor.rotate = {
+      x: x.x ? x.x : 0,
+      y: x.y ? x.y : 0,
+      z: x.z ? x.z : 0
+    };
+    x = u.scale || 0;
+    if (typeof x === "object") {
+      this._scale = this.anchor.scale = {
+        x: x.x ? x.x : 0,
+        y: x.y ? x.y : 0,
+        z: x.z ? x.z : 0
+      };
+    } else {
+      this._scale = this.anchor.scale = x;
+    }
+
+    for (let j = 0; j < copy.length; j++) {
+      if (u[copy[j]] !== undefined) {
+        this["_" + copy[j]] = u[copy[j]];
+      }
+    }
+  }
+  //get
+  get addTo() {
+    return this._addTo;
+  }
+  get translate() {
+    return this._translate;
+  }
+  get rotate() {
+    return this._rotate;
+  }
+  get scale() {
+    return this._scale;
+  }
+  get color() {
+    return this._color;
+  }
+  get fill() {
+    return this._fill;
+  }
+  get colors() {
+    return this._colors;
+  }
+  //set
+  set addTo(x) {
+    this._addTo = this.anchor.addTo = x;
+  }
+  set translate(x) {
+    this._translate = this.anchor.translate = {
+      x: x.x ? x.x : 0,
+      y: x.y ? x.y : 0,
+      z: x.z ? x.z : 0
+    };
+  }
+  set rotate(x) {
+    this._rotate = this.anchor.rotate = {
+      x: x.x ? x.x : 0,
+      y: x.y ? x.y : 0,
+      z: x.z ? x.z : 0
+    };
+  }
+  set scale(x) {
+    if (typeof x === "object") {
+      this._scale = this.anchor.scale = {
+        x: x.x ? x.x : 0,
+        y: x.y ? x.y : 0,
+        z: x.z ? x.z : 0
+      };
+    } else {
+      this._scale = this.anchor.scale = x;
+    }
+  }
+  set color(x) {
+    this._color = x;
+    this.parts.forEach(function(item) {
+      item.color = x;
+    });
+  }
+  set fill(x) {
+    this._fill = x;
+    this.parts.forEach(function(item) {
+      item.fill = x;
+    });
+  }
+  set stroke(x) {
+    this._stroke = x;
+    this.parts.forEach(function(item) {
+      item.stroke = x;
+    });
+  }
+  set colors(x) {
+    this._colors = x;
+    this.parts.forEach(function(item, index) {
+      item.color = x[index];
+    });
+  }
+  remove(t) {
+    if (this.addTo) {
+      this.addTo.removeChild(this);
+    }
+  }
+  copy(p) {
+    let x = new Zhedra.Cube({
+      addTo: p.addTo ? p.addTo : undefined,
+      translate: p.translate ? p.translate : undefined,
+      rotate: p.rotate ? p.rotate : undefined,
+      scale: p.scale ? p.scale : undefined,
+      color: p.color ? p.color : undefined,
+      fill: p.fill ? p.fill : undefined,
+      stroke: p.stroke ? p.stroke : undefined,
+      colors: p.colors ? p.colors : undefined
+    });
   }
 };
 Zhedra.Octa = class {
@@ -343,7 +509,7 @@ Zhedra.Octa = class {
         z: x.z ? x.z : 0
       };
     } else {
-      this._scale = this.anchor.scale = x*0.7;
+      this._scale = this.anchor.scale = x * 0.7;
     }
   }
   set color(x) {
@@ -374,6 +540,18 @@ Zhedra.Octa = class {
     if (this.addTo) {
       this.addTo.removeChild(this);
     }
+  }
+  copy(p) {
+    let x = new Zhedra.Octa({
+      addTo: p.addTo ? p.addTo : undefined,
+      translate: p.translate ? p.translate : undefined,
+      rotate: p.rotate ? p.rotate : undefined,
+      scale: p.scale ? p.scale : undefined,
+      color: p.color ? p.color : undefined,
+      fill: p.fill ? p.fill : undefined,
+      stroke: p.stroke ? p.stroke : undefined,
+      colors: p.colors ? p.colors : undefined
+    });
   }
 };
 Zhedra.Dodeca = class {
@@ -550,6 +728,18 @@ Zhedra.Dodeca = class {
       this.addTo.removeChild(this);
     }
   }
+  copy(p) {
+    let x = new Zhedra.Dodeca({
+      addTo: p.addTo ? p.addTo : undefined,
+      translate: p.translate ? p.translate : undefined,
+      rotate: p.rotate ? p.rotate : undefined,
+      scale: p.scale ? p.scale : undefined,
+      color: p.color ? p.color : undefined,
+      fill: p.fill ? p.fill : undefined,
+      stroke: p.stroke ? p.stroke : undefined,
+      colors: p.colors ? p.colors : undefined
+    });
+  }
 };
 Zhedra.Icosa = class {
   constructor(u) {
@@ -718,11 +908,23 @@ Zhedra.Icosa = class {
       this.addTo.removeChild(this);
     }
   }
+  copy(p) {
+    let x = new Zhedra.Icosa({
+      addTo: p.addTo ? p.addTo : undefined,
+      translate: p.translate ? p.translate : undefined,
+      rotate: p.rotate ? p.rotate : undefined,
+      scale: p.scale ? p.scale : undefined,
+      color: p.color ? p.color : undefined,
+      fill: p.fill ? p.fill : undefined,
+      stroke: p.stroke ? p.stroke : undefined,
+      colors: p.colors ? p.colors : undefined
+    });
+  }
 };
 Zhedra.init = function() {
   Zdog.Tetra = Zhedra.Tetra;
+  Zdog.Cube = Zhedra.Cube;
   Zdog.Octa = Zhedra.Octa;
   Zdog.Dodeca = Zhedra.Dodeca;
   Zdog.Icosa = Zhedra.Icosa;
-  Zdog.Cube = Zdog.Box;
 };
