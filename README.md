@@ -12,7 +12,7 @@ Link directly to Zdog JS on ...
 <script src="..."></script>
 ```
 
-##Features
+## Features
 
 + New Objects!
 + Tetrahedron (Zdog.Tetra)
@@ -22,15 +22,15 @@ Link directly to Zdog JS on ...
 + Change the color of each face
 + Less than 9Kb minified
 
-##Caveats
+## Caveats
 
 + Objects can't have children
 
-##Codepen Demos
+## Codepen Demos
 
 The Codepen 
 
-##Hello World Demo
+## Hello World Demo
 
 ``` js
 // Initialize Zhedra
