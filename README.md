@@ -23,10 +23,6 @@ Link directly to Zdog JS on ...
 + Change the color of each face
 + Less than 9Kb minified
 
-#### Not really a Feature
-
-+ Cube! (Zdog.Box renamed)
-
 ## Caveats
 
 + Objects can't have children
