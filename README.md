@@ -79,15 +79,15 @@ colors: [
 
 ## API
 
-### Zdog.Tetra
+### Object Properties
 
 | Param      | Details | Default |
 |:-----------|:--------|:--------|
 | `addTo`    | Illustration / Anchor / Group to add to | required |
-| `translate` | (Object) Translation of the Tetrahedron | `{x : 0 , y : 0 , z : 0}` |
-| `rotate` | (Object) Rotation of the Tetrahedron | `{x : 0 , y : 0 , z : 0}` |
-| `scale` | (Object / Number) Scale of the Tetrahedron | `1` |
-| `color` | (String) Color of all faces of the Tetrahedron | `'#333'` |
+| `translate` | (Object) Translation | `{x : 0 , y : 0 , z : 0}` |
+| `rotate` | (Object) Rotation | `{x : 0 , y : 0 , z : 0}` |
+| `scale` | (Object / Number) Scale | `1` |
+| `color` | (String) Color of all faces | `'#333'` |
 | `fill` | (Boolean) Fill param for all faces | `true` |
 | `stroke` | (String) Stroke param for all faces | `'#333'` |
 | `frontFace` | (String) Color of the front face | `optional` |
@@ -96,7 +96,16 @@ colors: [
 | `leftFace` | (String) Color of the left face | `optional` |
 | `colors` | (Array containing Strings) Colors of each faces | `optional` |
 
-#### Demo
+### Functions
+
+| Param      | Details |
+|:-----------|:--------|
+| `copy(params);` | Copy Object (Params above ^) |
+| `remove();` | Remove Object |
+
+## Demos
+
+### Zdog.Tetra
 
 ``` js
 // Create a tetrahedron object
@@ -111,24 +120,21 @@ new Zdog.Tetra({
 });
 ```
 
+### Zdog.Cube
+
+``` js
+// Create a cube object
+new Zdog.Cube({
+  addTo: illo,
+  translate: {},
+  rotate: {},
+  scale: 80,
+  color: "#0A2",
+  fill: true,
+  stroke: 0,
+});
+```
 ### Zdog.Octa
-
-| Param      | Details | Default |
-|:-----------|:--------|:--------|
-| `addTo`    | Illustration / Anchor / Group to add to | required |
-| `translate` | (Object) Translation of the Octahedron | `{x : 0 , y : 0 , z : 0}` |
-| `rotate` | (Object) Rotation of the Octahedron | `{x : 0 , y : 0 , z : 0}` |
-| `scale` | (Object / Number) Scale of the Octtahedron | `1` |
-| `color` | (String) Color of all faces of the Octtahedron | `'#333'` |
-| `fill` | (Boolean) Fill param for all faces | `true` |
-| `stroke` | (String) Stroke param for all faces | `'#333'` |
-| `frontFace` | (String) Color of the front face | `optional` |
-| `bottomFace` | (String) Color of the bottom face | `optional` |
-| `rightFace` | (String) Color of the right face | `optional` |
-| `leftFace` | (String) Color of the left face | `optional` |
-| `colors` | (Array containing Strings) Colors of each faces | `optional` |
-
-#### Demo
 
 ``` js
 // Create a octahedron object
@@ -145,23 +151,6 @@ new Zdog.Octa({
 
 ### Zdog.Dodeca
 
-| Param      | Details | Default |
-|:-----------|:--------|:--------|
-| `addTo`    | Illustration / Anchor / Group to add to | required |
-| `translate` | (Object) Translation of the Dodecahedron | `{x : 0 , y : 0 , z : 0}` |
-| `rotate` | (Object) Rotation of the Dodecahedron | `{x : 0 , y : 0 , z : 0}` |
-| `scale` | (Object / Number) Scale of the Dodecahedron | `1` |
-| `color` | (String) Color of all faces of the Dodecahedron | `'#333'` |
-| `fill` | (Boolean) Fill param for all faces | `true` |
-| `stroke` | (String) Stroke param for all faces | `'#333'` |
-| `frontFace` | (String) Color of the front face | `optional` |
-| `bottomFace` | (String) Color of the bottom face | `optional` |
-| `rightFace` | (String) Color of the right face | `optional` |
-| `leftFace` | (String) Color of the left face | `optional` |
-| `colors` | (Array containing Strings) Colors of each faces | `optional` |
-
-#### Demo
-
 ``` js
 // Create a dodecahedron object
 new Zdog.Dodeca({
@@ -176,23 +165,6 @@ new Zdog.Dodeca({
 ```
 
 ### Zdog.Icosa
-
-| Param      | Details | Default |
-|:-----------|:--------|:--------|
-| `addTo`    | Illustration / Anchor / Group to add to | required |
-| `translate` | (Object) Translation of the Icosahedron | `{x : 0 , y : 0 , z : 0}` |
-| `rotate` | (Object) Rotation of the Icosahedron | `{x : 0 , y : 0 , z : 0}` |
-| `scale` | (Object / Number) Scale of the Icosahedron | `1` |
-| `color` | (String) Color of all faces of the Icosahedron | `'#333'` |
-| `fill` | (Boolean) Fill param for all faces | `true` |
-| `stroke` | (String) Stroke param for all faces | `'#333'` |
-| `frontFace` | (String) Color of the front face | `optional` |
-| `bottomFace` | (String) Color of the bottom face | `optional` |
-| `rightFace` | (String) Color of the right face | `optional` |
-| `leftFace` | (String) Color of the left face | `optional` |
-| `colors` | (Array containing Strings) Colors of each faces | `optional` |
-
-#### Demo
 
 ``` js
 // Create a icosahedron object
