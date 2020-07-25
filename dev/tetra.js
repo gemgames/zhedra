@@ -3,9 +3,6 @@ Zhedra.Tetra = class {
     this.children = "WIP";
     let copy = [
       "addTo",
-      "translate",
-      "rotate",
-      "scale",
       "color",
       "fill",
       "stroke",
@@ -94,6 +91,29 @@ Zhedra.Tetra = class {
       })
     ];
     d = null;
+    let x = u.translate;
+    this._translate = this.anchor.translate = {
+      x: x.x ? x.x : 0,
+      y: x.y ? x.y : 0,
+      z: x.z ? x.z : 0
+    };
+    x = u.rotate;
+    this._rotate = this.anchor.rotate = {
+      x: x.x ? x.x : 0,
+      y: x.y ? x.y : 0,
+      z: x.z ? x.z : 0
+    };
+    x = u.scale;
+    if (typeof x === "object") {
+      this._scale = this.anchor.scale = {
+        x: x.x ? x.x : 0,
+        y: x.y ? x.y : 0,
+        z: x.z ? x.z : 0
+      };
+    } else {
+      this._scale = this.anchor.scale = x;
+    }
+
     for (let j = 0; j < copy.length; j++) {
       if (u[copy[j]] !== undefined) {
         this["_" + copy[j]] = u[copy[j]];
@@ -139,13 +159,29 @@ Zhedra.Tetra = class {
     this._addTo = this.anchor.addTo = x;
   }
   set translate(x) {
-    this._translate = this.anchor.translate = x || { x: 0, y: 0, z: 0 };
+    this._translate = this.anchor.translate = {
+      x: x.x ? x.x : 0,
+      y: x.y ? x.y : 0,
+      z: x.z ? x.z : 0
+    };
   }
   set rotate(x) {
-    this._rotate = this.anchor.rotate = x || { x: 0, y: 0, z: 0 };
+    this._rotate = this.anchor.rotate = {
+      x: x.x ? x.x : 0,
+      y: x.y ? x.y : 0,
+      z: x.z ? x.z : 0
+    };
   }
   set scale(x) {
-    this._scale = this.anchor.scale = x || { x: 0, y: 0, z: 0 };
+    if (typeof x === "object") {
+      this._scale = this.anchor.scale = {
+        x: x.x ? x.x : 0,
+        y: x.y ? x.y : 0,
+        z: x.z ? x.z : 0
+      };
+    } else {
+      this._scale = this.anchor.scale = x;
+    }
   }
   set color(x) {
     this._color = this.parts[0].color = this.parts[1].color = this.parts[2].color = this.parts[3].color =
