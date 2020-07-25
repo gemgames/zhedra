@@ -93,13 +93,13 @@ Zhedra.Tetra = class {
       })
     ];
     d = null;
-    let x = u.translate;
+    let x = u.translate||{};
     this._translate = this.anchor.translate = {
       x: x.x ? x.x : 0,
       y: x.y ? x.y : 0,
       z: x.z ? x.z : 0
     };
-    x = u.rotate;
+    x = u.rotate||{};
     this._rotate = this.anchor.rotate = {
       x: x.x ? x.x : 0,
       y: x.y ? x.y : 0,
