@@ -33,13 +33,19 @@ Zhedra.Dodeca = class {
         addTo: e,
         translate: { y: -r },
         rotate: { x: Zdog.TAU / 4 },
-        fill: true,
-        stroke: false,
-        color: u.colors[0]
+        fill: u.fill,
+        stroke: u.stroke,
+        color: u.colors ? u.colors[0] : u.color
       })
     ];
     let p = this.parts[0];
-    this.parts.push(p.copy({ translate: { y: r }, rotate: { x: -Zdog.TAU / 4 },color: u.colors[1] }));
+    this.parts.push(
+      p.copy({
+        translate: { y: r },
+        rotate: { x: -Zdog.TAU / 4 },
+        color: u.colors ? u.colors[0] : u.color
+      })
+    );
 
     m = Zdog.TAU / 5;
     this.anchor1 = [
@@ -71,7 +77,7 @@ Zhedra.Dodeca = class {
           addTo: d[j],
           translate: { z: r },
           rotate: { z: Zdog.TAU / 2 },
-          color: u.colors ? u.colors[j+2] : u.color
+          color: u.colors ? u.colors[j + 2] : u.color
         })
       );
       m = j === 3 ? 1 : m;
@@ -79,7 +85,7 @@ Zhedra.Dodeca = class {
     d = null;
     for (let j = 0; j < copy.length; j++) {
       if (u[copy[j]] !== undefined) {
-        this["_" + copy[j]] = u[copy[j]];
+        this[copy[j]] = u[copy[j]];
       }
     }
   }
@@ -113,36 +119,53 @@ Zhedra.Dodeca = class {
     this._addTo = this.anchor.addTo = x;
   }
   set translate(x) {
-    this._translate = x;
-    this.anchor.translate = { x: x.x, y: x.y + 4, z: x.z };
+    this._translate = this.anchor.translate = {
+      x: x.x ? x.x : 0,
+      y: x.y ? x.y : 0,
+      z: x.z ? x.z : 0
+    };
   }
   set rotate(x) {
-    this._rotate = this.anchor.rotate = x || { x: 0, y: 0, z: 0 };
+    this._rotate = this.anchor.rotate = {
+      x: x.x ? x.x : 0,
+      y: x.y ? x.y : 0,
+      z: x.z ? x.z : 0
+    };
   }
   set scale(x) {
-    this._scale = x;
     if (typeof x === "object") {
-      this.anchor.scale = { x: x.x * 0.35, y: x.y * 0.35, z: x.z * 0.35 };
+      this._scale = this.anchor.scale = {
+        x: x.x ? x.x : 0,
+        y: x.y ? x.y : 0,
+        z: x.z ? x.z : 0
+      };
     } else {
-      this.anchor.scale = x * 0.38;
+      this._scale = this.anchor.scale = x * 0.35;
     }
   }
   set color(x) {
-    this._color = this.parts[0].color = this.parts[1].color = this.parts[2].color = this.parts[3].color =
-      x || "#333";
+    this._color = x;
+    this.parts.forEach(function(item) {
+      item.color = x;
+    });
   }
   set fill(x) {
-    this._fill = this.anchor.fill = typeof x === "boolean" ? x : false;
+    this._fill = x;
+    this.parts.forEach(function(item) {
+      item.fill = x;
+    });
   }
   set stroke(x) {
-    this._stroke = this.parts[0].stroke = this.parts[1].stroke = this.parts[2].stroke = this.parts[3].stroke =
-      x || 0;
+    this._stroke = x;
+    this.parts.forEach(function(item) {
+      item.stroke = x;
+    });
   }
   set colors(x) {
     this._colors = x;
-    for (let i = 0; i < 8; i++) {
-      this.parts[i] = x[i];
-    }
+    this.parts.forEach(function(item, index) {
+      item.color = x[index];
+    });
   }
   remove(t) {
     if (this.addTo) {
