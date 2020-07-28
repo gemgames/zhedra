@@ -1,4 +1,4 @@
-hedra.Dodeca = class {
+Zhedra.Dodeca = class {
   constructor(u) {
     this.children = "WIP";
     //
@@ -174,14 +174,14 @@ hedra.Dodeca = class {
   }
   copy(p) {
     let x = new Zhedra.Dodeca({
-      addTo: p.addTo ? p.addTo : undefined,
-      translate: p.translate ? p.translate : undefined,
-      rotate: p.rotate ? p.rotate : undefined,
-      scale: p.scale ? p.scale : undefined,
-      color: p.color ? p.color : undefined,
-      fill: p.fill ? p.fill : undefined,
-      stroke: p.stroke ? p.stroke : undefined,
-      colors: p.colors ? p.colors : undefined
+      addTo: p.addTo ? p.addTo : this.addTo,
+      translate: p.translate ? p.translate : this.translate,
+      rotate: p.rotate ? p.rotate : this.rotate,
+      scale: p.scale ? p.scale : this.scale,
+      color: p.color ? p.color : this.color,
+      fill: p.fill ? p.fill : this.fill,
+      stroke: p.stroke ? p.stroke : this.stroke,
+      colors: p.colors ? p.colors : this.colors
     });
   }
 };
