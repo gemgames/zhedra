@@ -97,7 +97,7 @@ colors: [
 
 | Functions  | Params  | Details |
 |:-----------|:--------|:--------|
-| `copy(params);` | `params`: Function | Copy Object (Params above ^) |
+| `copy(params);` | `params`: Object | Copy Object (Params above ^) |
 | `remove();` | `none` | Remove Object |
 
 ## Demos
